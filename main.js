@@ -62,6 +62,6 @@ function showQuestion() {
 		console.log(item);
 
 
-		//ПРОДОЛЖАЕМ ТУТ
+		//ПРОДОЛЖАЕМ ТУТ Проверка 123
 	}
 }
