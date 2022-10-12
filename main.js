@@ -81,11 +81,15 @@ function showQuestion() {
 };
 
 function checkAnswer () {
+	//Находим выбранную радио кнопку
 	const checkedRadio = listContainer.querySelector('input[type="radio"]:checked');
-	console.log(checkedRadio);
 
+	//Если ответ не выбран - ничего не делаем, выходим из функции
 	if (!checkedRadio){
 		submitBtn.blur();
 		return
 	};
+
+	//Узнаем номер ответа пользователя
+	const userAnswer = parseInt(checkedRadio.value);
 }
