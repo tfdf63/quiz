@@ -42,6 +42,7 @@ let questionIndex = 0;
 
 clearPage();
 showQuestion();
+submitBtn.onclick = checkAnswer;
 
 function clearPage() {
 	headerContainer.innerHTML = '';
@@ -58,19 +59,33 @@ function showQuestion() {
 	headerContainer.innerHTML = title;
 
 	//Варианты ответов
-	for (answersText of questions[questionIndex]['answers']) {
-		console.log(answersText);
+	let answerNumber = 1;
+	for ([index, answersText] of questions[questionIndex]['answers'].entries()) {
+		console.log(index+1, answersText);
 
 	const questionTemplate =
 		`<li>
 			<label>
-				<input type="radio" class="answer" name="answer" />
+				<input value="%number%" type="radio" class="answer" name="answer" />
 				<span>%answer%</span>
 			</label>
 		</li>`;
+	
+	const answerHTML = questionTemplate
+							.replace('%answer%', answersText)
+							.replace('%number%', answerNumber);
 
-	const answerHTML = questionTemplate.replace('%answer%', answersText);
-
-	listContainer.innerHTML = listContainer.innerHTML + answerHTML;
+	listContainer.innerHTML += answerHTML;
+	answerNumber++;
 	}
 };
+
+function checkAnswer () {
+	const checkedRadio = listContainer.querySelector('input[type="radio"]:checked');
+	console.log(checkedRadio);
+
+	if (!checkedRadio){
+		submitBtn.blur();
+		return
+	};
+}
