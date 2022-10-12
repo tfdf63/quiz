@@ -58,10 +58,19 @@ function showQuestion() {
 	headerContainer.innerHTML = title;
 
 	//Варианты ответов
-	for (item of questions[questionIndex]['answers']) {
-		console.log(item);
+	for (answersText of questions[questionIndex]['answers']) {
+		console.log(answersText);
 
+	const questionTemplate =
+		`<li>
+			<label>
+				<input type="radio" class="answer" name="answer" />
+				<span>%answer%</span>
+			</label>
+		</li>`;
 
-		//ПРОДОЛЖАЕМ ТУТ Проверка 123
+	const answerHTML = questionTemplate.replace('%answer%', answersText);
+
+	listContainer.innerHTML = listContainer.innerHTML + answerHTML;
 	}
-}
+};
